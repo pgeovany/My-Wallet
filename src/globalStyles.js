@@ -49,4 +49,9 @@ export default createGlobalStyle`
         font-weight: bold;
     }
 //-------RESET-----------------------//
+
+//------My Styles--------------------//
+    * {
+        box-sizing: border-box;
+    }
 `;
