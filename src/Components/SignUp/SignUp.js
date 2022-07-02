@@ -1,19 +1,82 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 import axios from "axios";
 import styled from "styled-components";
-import UserContext from "../contexts/UserContext";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [disableButton, setDisableButton] = useState(false);
+  const navigate = useNavigate();
+
+  async function signUp(e) {
+    e.preventDefault();
+    setDisableButton(true);
+
+    if (password !== confirmPassword) {
+      setDisableButton(false);
+      alert("As senhas devem ser iguais!");
+      return;
+    }
+
+    const body = {
+      name,
+      email,
+      password,
+      passwordConfirmation: confirmPassword,
+    };
+
+    try {
+      await axios.post("http://localhost:5000/sign-up", body);
+      navigate("/");
+    } catch (error) {
+      setDisableButton(false);
+      alert(error.response.data);
+    }
+  }
+
   return (
     <Container>
       <Title>MyWallet</Title>
-      <Form onSubmit={() => console.log("Submitted!")}>
-        <Input placeholder="Nome" />
-        <Input placeholder="E-mail" />
-        <Input placeholder="Senha" />
-        <Input placeholder="Confirme a senha" />
-        <Button>Cadastrar</Button>
+      <Form onSubmit={signUp}>
+        <Input
+          placeholder="Nome"
+          required
+          disabled={disableButton}
+          value={name}
+          type="text"
+          onChange={(e) => setName(e.target.value)}
+        />
+        <Input
+          placeholder="E-mail"
+          required
+          disabled={disableButton}
+          value={email}
+          type="email"
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <Input
+          placeholder="Senha"
+          required
+          disabled={disableButton}
+          value={password}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Input
+          placeholder="Confirme a senha"
+          required
+          disabled={disableButton}
+          value={confirmPassword}
+          type="password"
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+        <Button type="submit" disabled={disableButton}>
+          {disableButton ? <ThreeDots color="white" /> : "Cadastrar"}
+        </Button>
       </Form>
       <Link to="/">
         <p>Já tem conta? Entre agora!</p>

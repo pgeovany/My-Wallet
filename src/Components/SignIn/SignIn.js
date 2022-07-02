@@ -36,20 +36,20 @@ export default function SignIn() {
       <Title>MyWallet</Title>
       <Form onSubmit={logIn}>
         <Input
+          placeholder="E-mail"
           required
           disabled={disableButton}
           value={email}
           type="email"
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail"
         />
         <Input
+          placeholder="Senha"
           required
           disabled={disableButton}
           value={password}
           type="password"
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Senha"
         />
         <Button type="submit" disabled={disableButton}>
           {disableButton ? <ThreeDots color="white" /> : "Entrar"}
