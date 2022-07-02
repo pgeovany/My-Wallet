@@ -24,9 +24,8 @@ export default function SignUp() {
 
     const body = {
       name,
-      email,
+      email: email.toLowerCase(),
       password,
-      passwordConfirmation: confirmPassword,
     };
 
     try {
