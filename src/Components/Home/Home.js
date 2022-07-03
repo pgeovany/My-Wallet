@@ -129,7 +129,8 @@ const Balance = styled.div`
     font-weight: bold;
   }
   h1 {
-    color: ${(props) => (props.value > 0 ? "#03AC00" : "#C70000")};
+    color: ${(props) =>
+      props.value === 0 ? "black" : props.value > 0 ? "#03AC00" : "#C70000"};
   }
 `;
 
