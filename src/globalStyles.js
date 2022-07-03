@@ -54,4 +54,9 @@ export default createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+
+    .root {
+        min-height: 100vh;
+        background-color: #a328d6;
+    }
 `;
