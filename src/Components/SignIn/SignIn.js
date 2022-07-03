@@ -23,7 +23,7 @@ export default function SignIn() {
 
     try {
       const request = await axios.post("http://localhost:5000/sign-in", body);
-      setUserInfo(request.data);
+      setUserInfo({ token: request.data });
       navigate("/home");
     } catch (error) {
       setDisableButton(false);
