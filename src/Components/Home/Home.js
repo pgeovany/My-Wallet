@@ -21,7 +21,7 @@ export default function Home() {
     async function fetchData() {
       try {
         const promise = await axios.get(
-          "http://localhost:5000/transactions",
+          "https://my-wallet-api0.herokuapp.com/transactions",
           config
         );
         setUser(promise.data);

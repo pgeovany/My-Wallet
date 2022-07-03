@@ -22,7 +22,10 @@ export default function SignIn() {
     };
 
     try {
-      const request = await axios.post("http://localhost:5000/sign-in", body);
+      const request = await axios.post(
+        "https://my-wallet-api0.herokuapp.com/sign-in",
+        body
+      );
       setUserInfo({ token: request.data });
       navigate("/home");
     } catch (error) {

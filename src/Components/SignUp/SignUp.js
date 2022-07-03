@@ -29,7 +29,7 @@ export default function SignUp() {
     };
 
     try {
-      await axios.post("http://localhost:5000/sign-up", body);
+      await axios.post("https://my-wallet-api0.herokuapp.com/sign-up", body);
       navigate("/");
     } catch (error) {
       setDisableButton(false);

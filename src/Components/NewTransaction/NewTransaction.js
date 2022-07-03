@@ -40,7 +40,11 @@ export default function NewTransaction() {
     };
 
     try {
-      await axios.post("http://localhost:5000/transactions", body, config);
+      await axios.post(
+        "https://my-wallet-api0.herokuapp.com/transactions",
+        body,
+        config
+      );
       navigate(-1);
     } catch (error) {
       setDisableButton(false);
