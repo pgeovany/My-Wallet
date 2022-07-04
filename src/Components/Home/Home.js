@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import UserContext from "../contexts/UserContext";
+import Loader from "../shared/Loader";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -50,17 +51,19 @@ export default function Home() {
           </Header>
           {user.transactions?.length > 0 ? (
             <TransactionsContainer>
-              <div>
-                {user.transactions.map((transaction, index) => (
-                  <Transaction
-                    key={index}
-                    date={transaction.date}
-                    value={transaction.value}
-                    type={transaction.type}
-                    description={transaction.description}
-                  />
-                ))}
-              </div>
+              <TransactionsList>
+                <div>
+                  {user.transactions.map((transaction, index) => (
+                    <Transaction
+                      key={index}
+                      date={transaction.date}
+                      value={transaction.value}
+                      type={transaction.type}
+                      description={transaction.description}
+                    />
+                  ))}
+                </div>
+              </TransactionsList>
               <Balance value={user.balance}>
                 <p>SALDO</p>
                 <h1>{user.balance.toFixed(2).toString().replace(".", ",")}</h1>
@@ -103,7 +106,7 @@ export default function Home() {
         </Container>
       );
     }
-    return <></>;
+    return <Loader />;
   }
 
   return <>{genUserHome()}</>;
@@ -124,7 +127,16 @@ function Transaction({ date, value, type, description }) {
 
 const Balance = styled.div`
   display: flex;
+  position: absolute;
+  height: 30px;
+  background-color: white;
+  left: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 0 10px 0 10px;
   justify-content: space-between;
+  align-items: center;
   p {
     font-weight: bold;
   }
@@ -138,6 +150,12 @@ const TransactionBox = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
+
+  h2 {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 
   div {
     display: inherit;
@@ -193,12 +211,20 @@ const EmptyContainer = styled.div`
 `;
 
 const TransactionsContainer = styled.div`
-  width: 100%;
   height: 450px;
+  position: relative;
   margin-top: 24px;
   padding: 10px;
   background-color: white;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const TransactionsList = styled.div`
+  height: calc(100% - 20px);
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

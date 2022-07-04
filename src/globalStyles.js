@@ -58,5 +58,6 @@ export default createGlobalStyle`
     .root {
         min-height: 100vh;
         background-color: #a328d6;
+        font-family: 'Raleway', sans-serif;
     }
 `;

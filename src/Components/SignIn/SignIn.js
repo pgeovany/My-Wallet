@@ -92,6 +92,7 @@ const Title = styled.h1`
   color: white;
   font-weight: bold;
   margin-bottom: 24px;
+  font-family: "Saira Stencil One", "cursive";
 `;
 
 const Form = styled.form`
@@ -122,6 +123,7 @@ const Button = styled.button`
   width: 100%;
   border: none;
   color: white;
+  font-weight: bold;
   background-color: #a328d6;
   text-decoration: none;
   font-size: 20px;

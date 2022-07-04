@@ -148,6 +148,7 @@ const Button = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-weight: bold;
   &:hover {
     cursor: pointer;
   }
